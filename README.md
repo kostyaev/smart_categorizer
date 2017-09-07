@@ -9,6 +9,9 @@ This is the trainable tool that can be used to automate the categorization proce
 Args:
 
 `--positives` - directory containing positive images to train on
+
 `--negatives` - (optional) directory containing negative images to train on
+
 `--target_data` - path to directory containing uncategorized data
+
 `--save_to` - path to save automatically categorized data
