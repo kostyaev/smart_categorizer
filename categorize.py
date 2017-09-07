@@ -32,7 +32,7 @@ parser.add_argument(
         required=True
 )
 parser.add_argument(
-        '--result_dir',
+        '--save_to',
         type=str,
         help='Path to save categorized data',
         required=True
@@ -94,7 +94,7 @@ def get_features(paths):
     return features
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     model = ResNet50(weights='imagenet', include_top=False)
     negative_features = np.load('data/neg_f_1000.npy')
 
