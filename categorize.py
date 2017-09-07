@@ -12,13 +12,18 @@ import shutil
 import argparse
 import sys
 
-
 parser = argparse.ArgumentParser(description='Trainable categorization tool')
 parser.add_argument(
-        '--train_dir',
+        '--positives',
         type=str,
-        help='Directory containing positive and optionally negative images to train on',
+        help='Directory containing positive images to train on',
         required=True
+)
+parser.add_argument(
+        '--negatives',
+        type=str,
+        help='(Optional) Directory containing negative images to train on',
+        required=False
 )
 parser.add_argument(
         '--target_data',
@@ -26,14 +31,12 @@ parser.add_argument(
         help='Path to dir containing uncategorized data',
         required=True
 )
-
 parser.add_argument(
         '--result_dir',
         type=str,
         help='Path to save categorized data',
         required=True
 )
-
 
 args = parser.parse_args()
 
@@ -65,7 +68,6 @@ def get_dataset(pos, all_neg, hard_negative=None):
 
     X = np.vstack([pos, neg])
     y = np.hstack([pos_y, neg_y])
-
     return train_test_split(X, y, test_size=0.1)
 
 
@@ -101,9 +103,8 @@ if __name__ == 'main':
         print 'No data found to categorize in path: %s' % args.target_data
         sys.exit(1)
 
-    pos_dir = os.path.join(args.target_data, 'positives')
-    neg_dir = os.path.join(args.target_data, 'negatives')
-
+    pos_dir = os.path.join(args.positives)
+    neg_dir = os.path.join(args.negatives)
     pos_paths = glob.glob((pos_dir + '/*.jpg').replace('//', '/'))
     print 'Processing positives images...'
     pos_features = get_features(pos_paths)
