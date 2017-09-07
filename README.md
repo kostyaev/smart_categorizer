@@ -1,5 +1,5 @@
 # Smart Categorizer
-This is the trainable tool that can be used to automate the categorization process of images. It expects that you provide some categorized examples on which it will be trained on and then it do this job on uncategorized data. 
+This is the trainable tool that can be used to automate the categorization process of images. It expects that you provide some categorized examples (it works pretty good given just 10 examples) on which it will be trained on and then it categorize data automatically. 
 
 ![screenshot](images/example.jpg)
 
