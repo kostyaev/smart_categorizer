@@ -89,10 +89,8 @@ def get_features(paths):
         imgs = np.array(imgs)
         x = preprocess_input(imgs)
         preds = model.predict(x)
-        features.append(preds[:,0,0,:])
-    features = np.vstack(features)
-    return features
-
+        features.extend(preds[:,0,0,:])
+    return np.array(features)
 
 if __name__ == '__main__':
     model = ResNet50(weights='imagenet', include_top=False)
@@ -124,7 +122,7 @@ if __name__ == '__main__':
 
     print 'Processing target images.a.'
     target_features = get_features(pos_paths)
-    classify(raw_data_paths, args.result_dir)
+    classify(raw_data_paths, args.save_to)
     print 'Done!'
 
 
