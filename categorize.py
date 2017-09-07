@@ -103,16 +103,14 @@ if __name__ == '__main__':
         print 'No data found to categorize in path: %s' % args.target_data
         sys.exit(1)
 
-    pos_dir = os.path.join(args.positives)
-    neg_dir = os.path.join(args.negatives)
-    pos_paths = glob.glob((pos_dir + '/*.jpg').replace('//', '/'))
+    pos_paths = glob.glob((args.positives + '/*.jpg').replace('//', '/'))
     print 'Processing positives images...'
     pos_features = get_features(pos_paths)
 
     hard_neg_features = None
-    if os.path.exists(neg_dir):
+    if args.negatives and os.path.exists(args.negatives):
         print 'Processing negative images...'
-        hard_neg_paths = glob.glob((neg_dir + '/*.jpg').replace('//', '/'))
+        hard_neg_paths = glob.glob((args.negatives + '/*.jpg').replace('//', '/'))
         hard_neg_features = get_features(hard_neg_paths)
 
     clf = LinearSVC()
