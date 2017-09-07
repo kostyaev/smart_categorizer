@@ -4,7 +4,7 @@ from keras.applications.resnet50 import preprocess_input
 from keras.preprocessing import image
 import tqdm
 import glob
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 import os
