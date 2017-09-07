@@ -95,7 +95,6 @@ def get_features(paths):
 if __name__ == '__main__':
     model = ResNet50(weights='imagenet', include_top=False)
     negative_features = np.load('data/neg_f_1000.npy')
-
     raw_data_paths = glob.glob((args.target_data + '/*.jpg').replace('//', '/'))
     if len(raw_data_paths) == 0:
         print 'No data found to categorize in path: %s' % args.target_data
@@ -117,8 +116,6 @@ if __name__ == '__main__':
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     print 'Training finished. Accuracy score: %f' % accuracy_score(y_test, y_pred)
-    print 'Processing target images'
-    target_features = get_features(pos_paths)
     print 'Categorizing target images'
     classify(raw_data_paths, args.save_to)
     print 'Done!'
