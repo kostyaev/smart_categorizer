@@ -78,7 +78,8 @@ def classify(paths, pos_dir):
     pos_paths = [paths[idx] for idx in ids]
     if not os.path.exists(pos_dir):
         os.makedirs(pos_dir)
-    for p in tqdm.tqdm(pos_paths):
+    print 'Saving result...'
+    for p in pos_paths:
         shutil.copy(p, pos_dir)
 
 
