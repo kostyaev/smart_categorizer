@@ -9,7 +9,7 @@ This is the trainable tool that can be used to automate the categorization proce
 
 ## Usage example
 
-```python --train_dir=/datasetsA/examples/ --target_data=/dir/containing/images --result_dir=/datasets/autoA```
+```python --positives=/datasetsA/positives/ --target_data=/dir/containing/images --save_to=/datasets/autoA```
 
 Args:
 
@@ -20,3 +20,5 @@ Args:
 `--target_data` - path to directory containing uncategorized data
 
 `--save_to` - path to save automatically categorized data
+
+Negatives argument is optional because this code uses some predefined negative pool of images (stored in data folder), but if you provide negative examples the result will probably be more accurate.
