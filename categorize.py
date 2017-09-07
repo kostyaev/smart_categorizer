@@ -113,15 +113,13 @@ if __name__ == '__main__':
 
     clf = LinearSVC()
     X_train, X_test, y_train, y_test = get_dataset(pos_features, negative_features, hard_neg_features)
-
     print 'Training'
     clf.fit(X_train, y_train)
-
     y_pred = clf.predict(X_test)
-    'Training finished. Accuracy score: %f' % accuracy_score(y_test, y_pred)
-
-    print 'Processing target images.a.'
+    print 'Training finished. Accuracy score: %f' % accuracy_score(y_test, y_pred)
+    print 'Processing target images'
     target_features = get_features(pos_paths)
+    print 'Categorizing target images'
     classify(raw_data_paths, args.save_to)
     print 'Done!'
 
