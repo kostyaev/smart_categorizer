@@ -3,6 +3,10 @@ This is the trainable tool that can be used to automate the categorization proce
 
 ![screenshot](images/example.jpg)
 
+## Install
+1. Install tensorflow (GPU or CPU)
+2. Instal requirements: `pip install -r requirements.txt`
+
 ## Usage example
 
 ```python --train_dir=/datasetsA/examples/ --target_data=/dir/containing/images --result_dir=/datasets/autoA```
