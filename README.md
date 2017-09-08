@@ -3,13 +3,18 @@ This is the trainable tool that can be used to automate the categorization proce
 
 ![screenshot](images/example.jpg)
 
+### Prerequisites
+- Python 2.7
+- [TensorFlow](https://github.com/tensorflow/tensorflow) >= 1.2
+- [Keras](https://github.com/fchollet/keras) >= 2.0.7
+
 ## Install
 1. Install tensorflow (GPU or CPU)
 2. Instal requirements: `pip install -r requirements.txt`
 
 ## Usage example
 
-```python --positives=/datasetsA/positives/ --target_data=/dir/containing/images --save_to=/datasets/autoA```
+```python categorize.py --positives=/datasetsA/positives/ --target_data=/dir/containing/images --save_to=/datasets/autoA```
 
 Args:
 
