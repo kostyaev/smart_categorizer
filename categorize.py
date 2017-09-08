@@ -58,7 +58,8 @@ def get_dataset(pos, all_neg, hard_negative=None):
         neg.extend(hard_negative)
 
     if len(neg) < 2 * len(pos):
-        neg.extend(get_rand_subset(all_neg, 2 * len(pos) - len(neg)))
+        nums_of_neg = min(2 * len(pos) - len(neg), len(all_neg))
+        neg.extend(get_rand_subset(all_neg, nums_of_neg))
 
     neg = np.array(neg)
     neg_y = np.array([0] * len(neg))
