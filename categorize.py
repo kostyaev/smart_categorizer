@@ -45,6 +45,13 @@ def chunks(l, n):
     return [l[i:i + n] for i in xrange(0, len(l), n)]
 
 
+def list_images(dst_dir, exts='jpg,JPEG,gif,png'):
+    paths = []
+    for ext in exts.split(','):
+        paths.extend(glob.glob(dst_dir.rstrip('/') + '/*.%s' % ext))
+    return paths
+
+
 def get_rand_subset(data, n):
     ids = range(len(data))
     subset = np.random.choice(ids, size=n, replace=False)
@@ -97,19 +104,19 @@ def get_features(paths):
 if __name__ == '__main__':
     model = ResNet50(weights='imagenet', include_top=False)
     negative_features = np.load('data/neg_f_1000.npy')
-    raw_data_paths = glob.glob((args.target_data + '/*.jpg').replace('//', '/'))
+    raw_data_paths = list_images(args.target_data)
     if len(raw_data_paths) == 0:
         print 'No data found to categorize in path: %s' % args.target_data
         sys.exit(1)
 
-    pos_paths = glob.glob((args.positives + '/*.jpg').replace('//', '/'))
+    pos_paths = list_images(args.positives)
     print 'Processing positives images...'
     pos_features = get_features(pos_paths)
 
     hard_neg_features = None
     if args.negatives and os.path.exists(args.negatives):
         print 'Processing negative images...'
-        hard_neg_paths = glob.glob((args.negatives + '/*.jpg').replace('//', '/'))
+        hard_neg_paths = list_images(args.negatives)
         hard_neg_features = get_features(hard_neg_paths)
 
     clf = LinearSVC()
